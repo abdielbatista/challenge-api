@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const postgress = require('postgress');
 const dotenv = require('dotenv');
 
 const app = express();
@@ -17,9 +17,13 @@ app.get('/',(req,res)=>{
     res.json({message: "Olá humano"});
 })
 
-app.listen(3000)
+dotenv.config();
+DB_USER = process.env.DB_USER;
+DB_PASSWORD = process.env.DB_PASSWORD;
 
-/*.then(()=>{
+const sql = postgress('postgres://username:password@host:5432/encriptador')
+
+.then(()=>{
     console.log('Conectado')
     app.listen(3000)
-}).catch((err)=> console.log(err));*/
+}).catch((err)=> console.log(err));
