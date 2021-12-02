@@ -7,7 +7,11 @@ router.get('/',(req,res)=>{
     res.json({message: "Olá humano"});
 })
 
-//insert
+//create
 router.post('/create', EncripController.create)
+
+//search
+router.get('/encripts/:id', EncripController.search)
+
 
 module.exports = router
