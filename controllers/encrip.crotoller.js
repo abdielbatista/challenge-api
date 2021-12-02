@@ -21,13 +21,13 @@ module.exports = {
 
       const text = "INSERT INTO data(name) VALUES($1) RETURNING *";
       const values = [c["content"]];
+
       // callback
       pg.query(text, values, (err, res) => {
         if (err) {
           console.log(err.stack);
         } else {
-          //console.log(res.rows[0]);
-          //{ name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+          console.log(res.rows[0]);
         }
       });
 
@@ -74,7 +74,7 @@ module.exports = {
       });
 
       res.status(201).json({ name: "name" });
-      
+
     } catch (error) {
       res.status(500).json({ error: error });
     }
