@@ -31,7 +31,23 @@ module.exports = {
         }
       });
 
+      const query = {
+        name: "create",
+        text: "SELECT id FROM data WHERE name = $1",
+        values: [c['content']],
+      };
+
+      // callback
+      pg.query(query, (err, res) => {
+        if (err) {
+          console.log(err.stack);
+        } else {
+          console.log(res.rows[0]);
+        }
+      });
+
       res.status(201).json({ id: "teste", encripted_name: c["content"] });
+
     } catch (error) {
       res.status(500).json({ error: error });
     }
@@ -55,7 +71,6 @@ module.exports = {
         } else {
           console.log(res.rows[0]);
         }
-        
       });
 
       res.status(201).json({ name: "name" });
