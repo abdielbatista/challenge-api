@@ -1,6 +1,15 @@
 const router = require('express').Router();
 const {aplication} = require('express');
-const Encrip = require('../models/Encrip');
+const EncripController = require('../controllers/encrip.crotoller')
 
+
+//rota inicial
+app.get('/',(req,res)=>{
+    res.json({message: "Olá humano"});
+})
+
+
+//insert
+router.post('/create', EncripCrotoller.create)
 
 module.exports = router

@@ -1,13 +1,3 @@
-const express = require('express');
-const pg = require('pg');
-const dotenv = require('dotenv');
-
-const app = express();
-
-//ler JSON
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-
 dotenv.config();
 DB_USER = process.env.DB_USER;
 DB_PASSWORD = process.env.DB_PASSWORD;
@@ -23,4 +13,3 @@ DB_PASSWORD = process.env.DB_PASSWORD;
     });
 
     app.listen(3000) 
-  
