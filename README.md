@@ -10,3 +10,11 @@ Desafio técnico e criativo da Facile - Soluções em Sistemas com objetivo de a
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "postgres": "^1.0.2"
+
+## Retorno de erro:
+
+Caso o usuário não informe nenhum valor para a string, ou digite a sintaxe forma errada, a API retornara o seguinte erro:
+
+<div align="center">
+<img src="https://gitlab.com/abdiel_batista/facile-challenge/-/issues/1#note_750925440" width="700px" />
+</div>
