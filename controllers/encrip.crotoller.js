@@ -1,6 +1,6 @@
 const Encrip = require("../models/Encrip");
 const Crypto = require("../services/crypto")
-const app = express();
+const app = require('express');
 
 module.exports = {
   async create(req, res) {

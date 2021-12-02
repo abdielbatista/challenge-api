@@ -1,15 +1,14 @@
+const {Pool} = require("pg");
+const dotenv = require("dotenv");
+
 dotenv.config();
-DB_USER = process.env.DB_USER;
-DB_PASSWORD = process.env.DB_PASSWORD;
 
-//const connectionString = 'postgresql://${{DB_USER}}:{{DB_PASSWORD}}@host:5432/encriptador'
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
 
-  const Client = new pg.Client ({
-      host: 'localhost',
-      database: 'encriptador',
-      user: '${{DB_USER}}',
-      password: '{{DB_PASSWORD}}',
-      port: 5432,
-    });
-
-    app.listen(3000) 
+exports.pool = pool;
