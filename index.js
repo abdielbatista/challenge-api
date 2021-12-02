@@ -10,7 +10,6 @@ app.use(routes);
 app.listen(process.env.PORT || 3000);
 
 
-
 /*
 pg.query("SELECT * FROM public.data ORDER BY id ASC", (error, res)=>{
     console.log(error, res);
