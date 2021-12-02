@@ -18,18 +18,31 @@ module.exports = {
 
       const cryptoName = Crypto.encrypt(name);
       var c = Crypto.encrypt(name);
+      //c = c[content];
       //console.log(cryptoName);
       //return;
       //await Encrip.insert(encrip);
       //console.log
 
-      pg.query(
-        "INSERT INTO data(name) VALUES('$_c')",
+      /*pg.query(
+        "INSERT INTO data(name) VALUES($c) RETURNING *",
         (err, res) => {
           console.log(err, res);
           pg.end();
         }
-      );
+      );*/
+
+      const text = "INSERT INTO data(name) VALUES($1) RETURNING *";
+      const values = [c['content']];
+      // callback
+      pg.query(text, values, (err, res) => {
+        if (err) {
+          console.log(err.stack);
+        } else {
+          //console.log(res.rows[0]);
+          // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+        }
+      });
       
 
       res.status(201).json({ id: "teste", 
