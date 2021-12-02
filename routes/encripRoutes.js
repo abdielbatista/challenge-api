@@ -8,6 +8,6 @@ router.get('/',(req,res)=>{
 })
 
 //insert
-router.post('/create', EncripCrotoller.create)
+router.post('/create', EncripController.create)
 
 module.exports = router

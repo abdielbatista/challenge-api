@@ -16,13 +16,17 @@ module.exports = {
       }
 
       const cryptoName = Crypto.encrypt(name);
-      console.log(cryptoName);
-      return;
+      var c = Crypto.encrypt(name);
+      //console.log(cryptoName);
+      //return;
 
-      //criando dados
-      await Encrip.insert(encrip);
+      //await Encrip.insert(encrip);
+      
+      //console.log
 
-      res.status(201).json({ message: "Pessoa Inserida no Sistema" });
+      res.status(201).json({ id: "teste", 
+                             encripted_name:  c });
+
     } catch (error) {
       res.status(500).json({ error: error });
     }

@@ -1,11 +1,12 @@
-const app = require('express');
+const express = require('express');
+const app = express('express')
 const pg = require('./database/postgresql').pool;
 const routes = require('./routes/encripRoutes')
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(routes);
 
+app.use(routes);
 app.listen(process.env.PORT || 3000);
 
 
