@@ -34,7 +34,7 @@ module.exports = {
       const query = {
         name: "create",
         text: "SELECT id FROM data WHERE name = $1",
-        values: [c['content']],
+        values: [c["content"]],
       };
 
       // callback
@@ -47,7 +47,6 @@ module.exports = {
       });
 
       res.status(201).json({ id: "teste", encripted_name: c["content"] });
-
     } catch (error) {
       res.status(500).json({ error: error });
     }
@@ -56,6 +55,7 @@ module.exports = {
   //search
   async search(req, res) {
     const id = req.params.id;
+    let idsearch;
 
     try {
       const query = {
@@ -64,17 +64,17 @@ module.exports = {
         values: [id],
       };
 
+      //callback
       // callback
-      pg.query(query, (err, res) => {
-        if (err) {
-          console.log(err.stack);
-        } else {
-          console.log(res.rows[0]);
-        }
-      });
+      let r = await pg.query(query["text"], query["values"]);
 
-      res.status(201).json({ name: "name" });
+      //const cryptoName = Crypto.decrypt(r);
+      //var c = Crypto.decrypt(r);
 
+      console.log(r.rows);
+
+      //console.log(idsearch);
+      res.status(201).json({ name: r });
     } catch (error) {
       res.status(500).json({ error: error });
     }
