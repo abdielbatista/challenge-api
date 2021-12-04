@@ -1,4 +1,3 @@
-//const Encrip = require("../models/Encrip");
 const Crypto = require("../services/crypto");
 const pg = require("../database/postgresql").pool;
 const app = require("express");
