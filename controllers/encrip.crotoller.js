@@ -18,23 +18,25 @@ module.exports = {
 
       const cryptoName = Crypto.encrypt(name);
       var c = Crypto.encrypt(name);
+      
 
-      const text = "INSERT INTO data(name) VALUES($1) RETURNING *";
-      const values = [c["content"]];
+      const text = "INSERT INTO data(crypto) VALUES($1) RETURNING *";
+      const values = [JSON.stringify(c)];
+      
 
       // callback
       pg.query(text, values, (err, res) => {
         if (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
         } else {
-          console.log(res.rows[0]);
+          //console.log(res.rows[0]);
         }
       });
 
       const query = {
         name: "create",
         text: "SELECT id FROM data WHERE name = $1",
-        values: [c["content"]],
+        values: [c],
       };
 
       // callback
@@ -52,6 +54,7 @@ module.exports = {
     }
   },
 
+
   //search
   async search(req, res) {
     const id = req.params.id;
@@ -60,21 +63,25 @@ module.exports = {
     try {
       const query = {
         name: "search",
-        text: "SELECT name FROM data WHERE id = $1",
+        text: "SELECT crypto FROM data WHERE id = $1",
         values: [id],
       };
 
-      //callback
       // callback
       let r = await pg.query(query["text"], query["values"]);
 
-      //const cryptoName = Crypto.decrypt(r);
-      //var c = Crypto.decrypt(r);
+      //console.log(r);
+      //var c = Crypto();
+      //let c = Crypto.decrypt(hash);
 
-      console.log(r.rows);
+      const hash = JSON.parse(r.rows[0].crypto);
+      console.log(hash);
+
+      c = Crypto.decrypt(hash);
+      
 
       //console.log(idsearch);
-      res.status(201).json({ name: r });
+      res.status(201).json({ "name": c});
     } catch (error) {
       res.status(500).json({ error: error });
     }
