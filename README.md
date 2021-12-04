@@ -11,6 +11,16 @@ Desafio técnico e criativo da Facile - Soluções em Sistemas com objetivo de a
     "pg": "^8.7.1",
     "postgres": "^1.0.2"
 
+## Banco PostgresSQL
+
+```sql
+CREATE TABLE data(
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+    crypto TEXT NOT NULL
+);
+```
+
 ## Create
 
 <div align="center">
