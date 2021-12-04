@@ -21,5 +21,9 @@ Caso o usuário não informe nenhum valor para a string, ou digite a sintaxe de 
 
 ## Consulta
 
-É possivel fazer buscas por registros também, é utilizado a rota: localhost:3000/encripts/1
-Onde o último parâmetro da rota será o id a ser buscado no banco
+É possivel fazer buscas por registros também, é utilizado a rota: "localhost:3000/encripts/1" onde o último parâmetro da rota será o id a ser buscado no banco
+
+<div align="center">
+<img src="https://gitlab.com/abdiel_batista/facile-challenge/uploads/36a575753b27ee25d3548a163438b1a3/encripts.jpg" width="700px" />
+</div>
+
