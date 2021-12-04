@@ -15,7 +15,7 @@ Desafio técnico e criativo da Facile - Soluções em Sistemas com objetivo de a
 
 ```sql
 CREATE TABLE data(
-    id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL
     crypto TEXT NOT NULL
 );
