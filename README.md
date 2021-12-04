@@ -11,6 +11,13 @@ Desafio técnico e criativo da Facile - Soluções em Sistemas com objetivo de a
     "pg": "^8.7.1",
     "postgres": "^1.0.2"
 
+## Create
+
+<div align="center">
+<img src="https://gitlab.com/abdiel_batista/facile-challenge/uploads/827eb5d05fa7c49fee5868e83c35b033/create.jpg" width="700px" />
+</div>
+
+
 ## Retorno de erro:
 
 Caso o usuário não informe nenhum valor para a string, ou digite a sintaxe de forma errada, a API retornara o seguinte erro:
