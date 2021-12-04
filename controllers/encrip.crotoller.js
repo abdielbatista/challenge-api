@@ -22,24 +22,28 @@ module.exports = {
       
 
       // callback
-      const teste = pg.query(text, values, (err, res) => {
+      let teste = pg.query(text, values, (err, res) => {
         if (err) {
-          console.log(err.stack);
+          //console.log(err.stack);
         } else {
-          console.log(res.rows[0]);
+          //console.log(res.rows[0]);
         }
       });
+      
      
-      const query = {
-        name: "create",
+      const queryselect = {
+        name: "select",
         text: "SELECT id FROM data WHERE name = $1",
         values: [name],
       };
-
+      console.log(queryselect)
       //callback
-      let call = await pg.query(query["text"], query["values"]);
+      let call = await pg.query(queryselect["text"], queryselect["values"]);
+      console.log(call)
+      
 
-      res.status(201).json({ id: call.rows[0].id, encripted_name: c["content"] });
+      res.status(201).json({ id: call.rows[0].id, encripted_name: hash["content"] });
+
     } catch (error) {
       res.status(500).json({ error: error });
     }
