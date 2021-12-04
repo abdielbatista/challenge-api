@@ -7,7 +7,6 @@ module.exports = {
   async create(req, res) {
     try {
       const { name } = req.body;
-      //console.log(name);
 
       if (!name) {
         return res.status(422).json({
@@ -17,38 +16,31 @@ module.exports = {
       }
 
       const cryptoName = Crypto.encrypt(name);
-      var c = Crypto.encrypt(name);
+      var hash = Crypto.encrypt(name);
       
-
-      const text = "INSERT INTO data(crypto) VALUES($1) RETURNING *";
-      const values = [JSON.stringify(c)];
+      const text = "INSERT INTO data(crypto, name) VALUES($1, $2) RETURNING *";
+      const values = [JSON.stringify(hash), name];
       
 
       // callback
-      pg.query(text, values, (err, res) => {
-        if (err) {
-          //console.log(err.stack);
-        } else {
-          //console.log(res.rows[0]);
-        }
-      });
-
-      const query = {
-        name: "create",
-        text: "SELECT id FROM data WHERE name = $1",
-        values: [c],
-      };
-
-      // callback
-      pg.query(query, (err, res) => {
+      const teste = pg.query(text, values, (err, res) => {
         if (err) {
           console.log(err.stack);
         } else {
           console.log(res.rows[0]);
         }
       });
+     
+      const query = {
+        name: "create",
+        text: "SELECT id FROM data WHERE name = $1",
+        values: [name],
+      };
 
-      res.status(201).json({ id: "teste", encripted_name: c["content"] });
+      //callback
+      let call = await pg.query(query["text"], query["values"]);
+
+      res.status(201).json({ id: call.rows[0].id, encripted_name: c["content"] });
     } catch (error) {
       res.status(500).json({ error: error });
     }
@@ -58,7 +50,6 @@ module.exports = {
   //search
   async search(req, res) {
     const id = req.params.id;
-    let idsearch;
 
     try {
       const query = {
@@ -68,24 +59,16 @@ module.exports = {
       };
 
       // callback
-      let r = await pg.query(query["text"], query["values"]);
+      let id_user = await pg.query(query["text"], query["values"]);
 
-      //console.log(r);
-      //var c = Crypto();
-      //let c = Crypto.decrypt(hash);
+      const hash = JSON.parse(id_user.rows[0].crypto);
 
-      const hash = JSON.parse(r.rows[0].crypto);
-      console.log(hash);
-
-      c = Crypto.decrypt(hash);
+      decryp = Crypto.decrypt(hash);
       
-
-      //console.log(idsearch);
-      res.status(201).json({ "name": c});
+      res.status(201).json({ "name": decryp});
     } catch (error) {
       res.status(500).json({ error: error });
     }
   },
 };
 
-//seach
